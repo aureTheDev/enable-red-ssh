@@ -42,14 +42,12 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-SSH_CONFIG_FILE='/etc/ssh/sshd_config'
-
-# Disable password authentication
-sed -i 's/#\?PasswordAuthentication yes/PasswordAuthentication no/g' $SSH_CONFIG_FILE
-handle_result $? "Disable PasswordAuthentication"
-
-sed -i 's/#\?PermitRootLogin yes/PermitRootLogin prohibit-password/g' $SSH_CONFIG_FILE
-handle_result $? "Set PermitRootLogin to prohibit-password"
+cat <<EOF > /etc/ssh/sshd_config.d/custom.conf
+PasswordAuthentication no
+PubkeyAuthentication yes
+PermitRootLogin no
+EOF
+handle_result $? "Write SSH configuration to /etc/ssh/sshd_config.d/custom.conf"
 
 # Restart SSH service
 systemctl restart sshd
