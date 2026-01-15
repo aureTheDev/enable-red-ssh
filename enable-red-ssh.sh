@@ -76,7 +76,7 @@ echo "$PUBLIC_KEY" >> /root/.ssh/authorized_keys
 handle_result $? "Add public key to /root/.ssh/authorized_keys"
 
 # -------------------------------------------------------------------
-# Add public key to invoking user's authorized_keys (si sudo utilisé)
+# Add public key to invoking user's authorized_keys
 # -------------------------------------------------------------------
 if [ -n "$SUDO_USER" ] && [ "$SUDO_USER" != "root" ]; then
     USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
