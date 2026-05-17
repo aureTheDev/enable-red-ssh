@@ -7,4 +7,4 @@ This script configures SSH on your system by disabling password authentication a
 To download and run the script, use the following command:
 
 ```sh
-bash -c "$(wget -qLO - https://github.com/aureTheDev/enable-red-ssh/raw/main/enable-red-ssh.sh)"
+sudo bash -c "$(wget -qLO - https://github.com/aureTheDev/enable-red-ssh/raw/main/enable-red-ssh.sh)"
